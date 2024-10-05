@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 		velocity.y += 1
 	
 	if velocity.length() > 0:
-		print(velocity.normalized())
+		#print(velocity.normalized())
 		velocity = velocity.normalized() * speed
 		# $ is shorthand for get_node().
 		$AnimatedSprite2D.play()
@@ -47,14 +47,13 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 	
 		
-
-
 func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
 
-func _on_body_entered(body: Node2D) -> void:
+
+func _on_body_entered(_body: Node2D) -> void:
 	hide() # Player dissapears after being hit
 	hit.emit()
 	$CollisionShape2D.set_deferred("disabled", true)
