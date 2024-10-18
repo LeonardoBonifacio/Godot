@@ -1,0 +1,181 @@
+[gd_scene load_steps=24 format=3 uid="uid://c45dmkx6lplh0"]
+
+[ext_resource type="PackedScene" uid="uid://dlima5aavakls" path="res://cenário_grama.tscn" id="1_ughyn"]
+[ext_resource type="PackedScene" uid="uid://bpmvmpc8xn8fq" path="res://fazendeira.tscn" id="2_e4opu"]
+[ext_resource type="Texture2D" uid="uid://rjhctlcx4lg1" path="res://items&objects/Crop_Spritesheet.png" id="3_itg8y"]
+[ext_resource type="Script" path="res://tomate.gd" id="3_rb1hf"]
+[ext_resource type="Texture2D" uid="uid://cqdn3kagsnsbr" path="res://tilemaps/summer tilemap.png" id="5_mqeva"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toiv0"]
+atlas = ExtResource("5_mqeva")
+region = Rect2(128, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egxen"]
+atlas = ExtResource("5_mqeva")
+region = Rect2(128, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av6ix"]
+atlas = ExtResource("5_mqeva")
+region = Rect2(128, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx4vp"]
+atlas = ExtResource("5_mqeva")
+region = Rect2(128, 160, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3x6tu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_toiv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egxen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av6ix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx4vp")
+}],
+"loop": true,
+"name": &"ondulação",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf4k4"]
+atlas = ExtResource("5_mqeva")
+region = Rect2(144, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avvyy"]
+atlas = ExtResource("5_mqeva")
+region = Rect2(144, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkwlh"]
+atlas = ExtResource("5_mqeva")
+region = Rect2(144, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5awos"]
+atlas = ExtResource("5_mqeva")
+region = Rect2(144, 160, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aap2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rf4k4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avvyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkwlh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5awos")
+}],
+"loop": true,
+"name": &"ondulação",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxwq7"]
+atlas = ExtResource("3_itg8y")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhfen"]
+atlas = ExtResource("3_itg8y")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61wvb"]
+atlas = ExtResource("3_itg8y")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br6ve"]
+atlas = ExtResource("3_itg8y")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_df73k"]
+atlas = ExtResource("3_itg8y")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlsg7"]
+atlas = ExtResource("3_itg8y")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_npt03"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxwq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhfen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61wvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br6ve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_df73k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlsg7")
+}],
+"loop": true,
+"name": &"Tomate",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2pkr"]
+size = Vector2(14, 15)
+
+[node name="Principal" type="Node2D"]
+
+[node name="Cenário_Grama" parent="." instance=ExtResource("1_ughyn")]
+
+[node name="Fazendeira" parent="Cenário_Grama" instance=ExtResource("2_e4opu")]
+z_index = 1
+position = Vector2(623, 163)
+
+[node name="AnimatedSprite2D" parent="Cenário_Grama/Fazendeira" index="0"]
+animation = &"Andando_pra_direita"
+frame_progress = 0.0
+
+[node name="Camera2D" type="Camera2D" parent="Cenário_Grama/Fazendeira"]
+position = Vector2(0, 3)
+zoom = Vector2(3, 3)
+position_smoothing_speed = 3.0
+
+[node name="Flutuante1" type="AnimatedSprite2D" parent="Cenário_Grama"]
+position = Vector2(450, 145)
+sprite_frames = SubResource("SpriteFrames_3x6tu")
+animation = &"ondulação"
+autoplay = "ondulação"
+
+[node name="Flutuante2" type="AnimatedSprite2D" parent="Cenário_Grama"]
+position = Vector2(483, 180)
+sprite_frames = SubResource("SpriteFrames_aap2t")
+animation = &"ondulação"
+autoplay = "ondulação"
+frame = 3
+frame_progress = 0.662411
+
+[node name="Tomate" type="Area2D" parent="."]
+position = Vector2(560, 176)
+monitorable = false
+script = ExtResource("3_rb1hf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Tomate"]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_npt03")
+animation = &"Tomate"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tomate"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_q2pkr")
+
+[connection signal="body_entered" from="Tomate" to="Tomate" method="_on_body_entered"]
+
+[editable path="Cenário_Grama/Fazendeira"]
